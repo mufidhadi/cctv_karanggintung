@@ -42,16 +42,16 @@ def video_feed():
     remote_ip = request.args.get('ip', 'localhost')
     remote_port = request.args.get('port', 7000)
     source = request.args.get('source', 0)
-    source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed?source=' + str(source)
-    return Response(generate_frames(source, True), mimetype='multipart/x-mixed-replace; boundary=frame')
+    _source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed?source=' + str(source)
+    return Response(generate_frames(_source, True), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_feed_full')
 def video_feed_full():
     remote_ip = request.args.get('ip', 'localhost')
     remote_port = request.args.get('port', 7000)
     source = request.args.get('source', 0)
-    source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed_full?source=' + str(source)
-    return Response(generate_frames(source, False), mimetype='multipart/x-mixed-replace; boundary=frame')
+    _source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed_full?source=' + str(source)
+    return Response(generate_frames(_source, False), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/hello')
 def hello():
