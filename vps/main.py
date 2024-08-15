@@ -51,7 +51,6 @@ def video_feed():
     remote_port = request.args.get('port', 7000)
     source = request.args.get('source', 0)
     _source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed?source=' + str(source)
-    print(_source)
     return Response(generate_frames(_source, True), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_feed_full')
