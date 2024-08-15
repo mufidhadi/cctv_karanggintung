@@ -37,12 +37,21 @@ def generate_frames(rtsp_url,use_small=True):
     
     cap.release()
 
+@app.route('/video_feed_2')
+def video_feed_2():
+    remote_ip = request.args.get('ip', 'localhost')
+    remote_port = request.args.get('port', 7000)
+    source = request.args.get('source', 0)
+    # _source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed?source=' + str(source)
+    return Response(generate_frames(source, True), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 @app.route('/video_feed')
 def video_feed():
     remote_ip = request.args.get('ip', 'localhost')
     remote_port = request.args.get('port', 7000)
     source = request.args.get('source', 0)
     _source = 'http://' + remote_ip + ':' + str(remote_port) + '/video_feed?source=' + str(source)
+    print(_source)
     return Response(generate_frames(_source, True), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_feed_full')
