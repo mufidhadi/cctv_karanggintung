@@ -116,6 +116,12 @@
                 // const port = window.location.port;
                 const port = 7700;
                 const base_src_url = protocol + '//' + hostname + ':' + port;
+
+                // temporary: force http not https
+                if (protocol == 'https:'){
+                    window.location.href = window.location.href.replace('https://', 'http://');
+                }
+                
                 
                 let imgs = document.querySelectorAll('.preview-cctv');
                 for (let i = 0; i < imgs.length; i++) {

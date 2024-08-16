@@ -46,6 +46,11 @@
                 const port = 7700;
                 const base_src_url = protocol + '//' + hostname + ':' + port;
 
+                // temporary: force http not https
+                if (protocol == 'https:'){
+                    window.location.href = window.location.href.replace('https://', 'http://');
+                }
+
                 // get ?source=rtsp://cctv:AtmsJavis22@10.21.33.53/Streaming/Channels/102
                 const url = new URL(window.location.href);
                 const source = url.searchParams.get("source");
